@@ -1,5 +1,5 @@
 const {sendMessage} = require("./message.sender.module");
-const {app, crashReporter} = require('electron')
+const {app, crashReporter} = require('electron');
 
 const reportsPath = app.getAppPath() + '/logs/crashes';
 
@@ -14,4 +14,4 @@ module.exports = {
             compress: true
         });
     }
-}
+};

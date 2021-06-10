@@ -21,7 +21,7 @@ module.exports = {
 
             const paths = [];
             for (let f of e.dataTransfer.files) {
-                console.log('File(s) you dragged here: ', f.path)
+                console.log('File(s) you dragged here: ', f.path);
                 paths.push(f.path);
             }
 
@@ -33,7 +33,7 @@ module.exports = {
     listenToUpload: () => {
         ipcMain.on('file-upload', (event, arg) => {
             sendMessage('File upload starts for:' + JSON.stringify(arg));
-            event.returnValue = 'pong'
-        })
+            event.returnValue = 'pong';
+        });
     }
-}
+};

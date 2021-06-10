@@ -14,26 +14,26 @@ window.addEventListener('DOMContentLoaded', () => {
     notify('Your Electron App has just been loaded!');
 
     // // write to channel
-    console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+    console.log(ipcRenderer.sendSync('synchronous-message', 'ping')); // prints "pong"
 
     // ipcRenderer.send('asynchronous-message', 'ping')
 
     const replaceText = (selector, text) => {
-        const element = document.getElementById(selector)
-        if (element) element.innerText = text
-    }
+        const element = document.getElementById(selector);
+        if (element) element.innerText = text;
+    };
 
     for (const type of ['chrome', 'node', 'electron']) {
-        replaceText(`${type}-version`, process.versions[type])
+        replaceText(`${type}-version`, process.versions[type]);
     }
 
     const button = document.getElementById('preview-notification');
     button.onclick = () => {
         notify('Well done!');
-    }
+    };
 
 
     // create drag and drop
     dragAndDrop.init();
 
-})
+});

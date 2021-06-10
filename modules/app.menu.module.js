@@ -1,4 +1,4 @@
-const {Menu, shell} = require('electron')
+const {Menu, shell, app} = require('electron');
 
 module.exports = {
     create: (mainWindow) => {
@@ -9,19 +9,24 @@ module.exports = {
                     {
                         label: 'Preview notification',
                         click() {
-                            mainWindow.webContents.send('notify-user', 'Thanks for clicking!')
+                            mainWindow.webContents.send('notify-user', 'Thanks for clicking!');
                         }
                     },
                     {
                         label: 'Rublon MFA - website',
                         click() {
-                            shell.openExternal('https://rublon.com')
+                            shell.openExternal('https://rublon.com');
                         }
                     },
-                    {label: 'Exit'}
+                    {
+                        label: 'Exit',
+                        click(){
+                            app.quit();
+                        }
+                    }
                 ]
             }
-        ])
+        ]);
         Menu.setApplicationMenu(menu);
     }
-}
+};

@@ -4,7 +4,7 @@ module.exports = {
             title: 'Electron App',
             body: message,
             icon: 'assets/icons/check-ok.ico'
-        }
+        };
         new window.Notification(notification.title, notification);
     }
-}
+};

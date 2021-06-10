@@ -1,39 +1,39 @@
 const {autoUpdater, dialog} = require('electron');
 
-const APP_VERSION = require('../package.json').version
+const APP_VERSION = require('../package.json').version;
 
-const AUTO_UPDATE_URL = 'http://localhost/electron-app/stable/' + process.platform + '/' + APP_VERSION
+const AUTO_UPDATE_URL = 'http://localhost/electron-app/stable/' + process.platform + '/' + APP_VERSION;
 
 function init() {
     if (process.platform === 'linux') {
-        console.log('Auto updates not available on linux')
+        console.log('Auto updates not available on linux');
     } else {
-        initDarwinWin32()
+        initDarwinWin32();
     }
 }
 
 function initDarwinWin32() {
     autoUpdater.on(
         'error',
-        (err) => console.log(`Update error: ${err.message}`))
+        (err) => console.log(`Update error: ${err.message}`));
 
     autoUpdater.on(
         'checking-for-update',
-        () => console.log('Checking for update'))
+        () => console.log('Checking for update'));
 
     autoUpdater.on(
         'update-available',
-        () => console.log('Update available'))
+        () => console.log('Update available'));
 
     autoUpdater.on(
         'update-not-available',
-        () => console.log('No update available'))
+        () => console.log('No update available'));
 
     // Ask the user if update is available
     autoUpdater.on(
         'update-downloaded',
         (event, releaseNotes, releaseName) => {
-            console.log('Update downloaded')
+            console.log('Update downloaded');
             dialog.showMessageBox({
                 type: 'question',
                 buttons: ['Update', 'Cancel'],
@@ -42,16 +42,16 @@ function initDarwinWin32() {
                 title: 'Update available'
             }, response => {
                 if (response === 0) {
-                    autoUpdater.quitAndInstall()
+                    autoUpdater.quitAndInstall();
                 }
-            })
+            });
         }
-    )
+    );
 
-    autoUpdater.setFeedURL({url: AUTO_UPDATE_URL})
-    autoUpdater.checkForUpdates()
+    autoUpdater.setFeedURL({url: AUTO_UPDATE_URL});
+    autoUpdater.checkForUpdates();
 }
 
 module.exports = {
     init
-}
+};
