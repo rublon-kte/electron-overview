@@ -1,9 +1,6 @@
-const {sendMessage} = require("./message.sender.module");
-const {ipcRenderer, ipcMain} = require('electron');
-
 module.exports = {
     init: () => {
-        const dragAndDrop = document.getElementById('drag-file');
+        const dragAndDrop = document.getElementById('drag-and-drop');
         dragAndDrop.ondragover = () => {
             return false;
         };
@@ -18,22 +15,22 @@ module.exports = {
 
         dragAndDrop.ondrop = (e) => {
             e.preventDefault();
-
             const paths = [];
-            for (let f of e.dataTransfer.files) {
-                console.log('File(s) you dragged here: ', f.path);
-                paths.push(f.path);
+
+            for (let file of e.dataTransfer.files) {
+                paths.push(file.path);
             }
 
-            ipcRenderer.send('file-upload', paths);
-
+            // create html from file paths
+            const fileItems = paths.reduce((html, file) => {
+              html += `<li class="file-item">${file}</li>`;
+              return html;
+            }, '');
+          
+            // put File paths items into fileList element
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = fileItems;
             return false;
         };
     },
-    listenToUpload: () => {
-        ipcMain.on('file-upload', (event, arg) => {
-            sendMessage('File upload starts for:' + JSON.stringify(arg));
-            event.returnValue = 'pong';
-        });
-    }
 };

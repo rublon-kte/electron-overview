@@ -67,9 +67,6 @@ function createChannel() {
         console.log(arg); // prints "ping"
         event.returnValue = 'pong';
     });
-
-    // listen to upload
-    dragAndDrop.listenToUpload();
 }
 
 // This method will be called when Electron has finished

@@ -1,6 +1,6 @@
-#drag-file {
-    background-color: blue;
-    color: white;
+#drag-and-drop{
+    background-color: rgb(243, 243, 243);
+    color: rgb(0, 0, 0);
     text-align: center;
     width: 300px;
     height: 300px;
