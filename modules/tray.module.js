@@ -1,8 +1,15 @@
-const { Menu, Tray } = require('electron');
+const { Menu, Tray, nativeImage } = require('electron');
+
 let tray = null;
+
+const trayIcon = nativeImage.createFromPath('assets/icons/electron-logo-icon.png').resize({
+    width: 18,
+    height: 18,
+});
+
 module.exports = {
     setTray: () => {
-        tray = new Tray('assets/icons/check-ok.ico');
+        tray = new Tray(trayIcon);
         const contextMenu = Menu.buildFromTemplate([
             { label: 'Tray item 1', type: 'radio' },
             { label: 'Tray item 2', type: 'radio' },
